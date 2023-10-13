@@ -24,5 +24,5 @@ Halaman report
 ![image](https://github.com/ahmadseloabadi/SMOTE-SVM-GA/assets/50831996/30943eb8-c0d1-409f-907a-c77af0477e87)
 
 # Referensi
- - code dari github https : https://github.com/kevingeorge0123/SVM-Opt-by-Genetic-Algorithm/tree/main
+ - code Algoritma Genetika dari github https : https://github.com/kevingeorge0123/SVM-Opt-by-Genetic-Algorithm/tree/main
  - dataset berasal dari kaggle : https://www.kaggle.com/datasets/dimasdiandraa/data-ulasan-terlabel
