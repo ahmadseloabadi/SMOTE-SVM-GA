@@ -1,0 +1,42 @@
+[data-testid="stSidebar"] {
+  background-image: url(https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png);
+  background-size: 200px;
+  background-repeat: no-repeat;
+  background-position: 4px 20px;
+}
+button.css-5uatcg.edgvbvh10:hover {
+  background-color: red;
+  color: white;
+  transition-duration: 0.4s;
+}
+/* [data-testid="stVerticalBlock"] {
+  background-color: blue;
+} */
+/* h1,
+h2 {
+  color: black;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+p {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  text-align: justify;
+  color: black;
+} */
+
+/* [data-testid="stAppViewContainer"] {
+  background-color: whitesmoke;
+  /* background: rgb(0, 238, 110);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 238, 110, 1) 0%,
+    rgba(12, 117, 230, 1) 78%
+  ); 
+} */
+
+/* [data-testid="stText"] {
+  color: black;
+  text-align: justify;
+} */

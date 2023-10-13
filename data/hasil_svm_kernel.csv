@@ -1,0 +1,5 @@
+kernel,accuracy,precision,recall
+linear,89,89,89
+rbf,94,94,94
+poly,90,90,90
+sigmoid,86,86,86
