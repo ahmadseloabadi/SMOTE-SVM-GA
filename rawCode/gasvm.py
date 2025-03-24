@@ -2,19 +2,17 @@ import numpy as np
 import pandas as pd
 import random as rd
 #import time
-from sklearn import model_selection
-from sklearn import preprocessing
-from sklearn.model_selection import KFold
+
 from sklearn import svm
 import Genetic_Algorithm as svm_hp_opt
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
 from imblearn.over_sampling import SMOTE
-from collections import Counter
+
 from sklearn.model_selection import train_test_split
 
-ulasan=pd.read_csv('data/dataset_bersih.csv')
+ulasan=pd.read_csv('data/dataset/dataset_bersih.csv')
 X = ulasan['Stemming']
 Y = ulasan['Sentimen']
 vectorizer = TfidfVectorizer()

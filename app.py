@@ -3,7 +3,6 @@ import streamlit as st
 from PIL import Image
 from streamlit_option_menu import option_menu
 
-import plotly.express as px
 import matplotlib.pyplot as plt
 import pandas as pd
 import re
@@ -11,22 +10,18 @@ import numpy as np
 import random as rd
 import seaborn as sns
 
-import nltk
-from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-import swifter
 
 from imblearn.over_sampling import SMOTE
-from collections import Counter
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn import model_selection
-from sklearn.model_selection import train_test_split, cross_val_score, KFold, cross_val_predict
-from sklearn.metrics import recall_score,precision_score,confusion_matrix
-from sklearn.preprocessing import LabelEncoder
+
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+
 from sklearn import svm
 
 import Genetic_Algorithm as svm_hp_opt
@@ -42,7 +37,6 @@ def add_css(file):
 
 add_css("style/style.css")
 
-import pickle
 #import dataset
 
 ulasan = pd.read_csv('data/dataset/dataset_bersih.csv')
