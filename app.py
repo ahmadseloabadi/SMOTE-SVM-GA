@@ -8,7 +8,6 @@ import pandas as pd
 import re
 import numpy as np
 import random as rd
-import seaborn as sns
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
