@@ -8,6 +8,7 @@ import pandas as pd
 import re
 import numpy as np
 import random as rd
+import seaborn as sns
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -65,7 +66,7 @@ def tokenizing(kalimat_baru):
     kalimat_baru = word_tokenize(kalimat_baru)
     return kalimat_baru
 def slangword (kalimat_baru):
-    kamusSlang = eval(open("data/dictionry/slangwords.txt").read())
+    kamusSlang = eval(open("data/dictionary/slangwords.txt").read())
     pattern = re.compile(r'\b( ' + '|'.join (kamusSlang.keys())+r')\b')
     content = []
     for kata in kalimat_baru:
@@ -802,16 +803,18 @@ elif(selected == 'Report') :
         f, ax = plt.subplots(figsize=(8,5))
         sns.heatmap(confusion_matrix(sy_test, sy_pred), annot=True, fmt=".0f", ax=ax)
         # labels, title and ticks
-        ax.set_xlabel('Predicted labels');ax.set_ylabel('True labels'); 
-        ax.set_title('Confusion Matrix'); 
+        ax.set_xlabel('Predicted labels')
+        ax.set_ylabel('True labels') 
+        ax.set_title('Confusion Matrix') 
         ax.xaxis.set_ticklabels(['negatif', 'netral','positif']); ax.yaxis.set_ticklabels(['negatif', 'netral','positif']);
         st.pyplot(f)
         st.header('Confusion matriks metode GA-SVM')
         sY_pred = sga_svm.predict(sx_test)
         f, ax = plt.subplots(figsize=(8,5))
         sns.heatmap(confusion_matrix(sy_test, sY_pred), annot=True, fmt=".0f", ax=ax)
-        ax.set_xlabel('Predicted labels');ax.set_ylabel('True labels'); 
-        ax.set_title('Confusion Matrix'); 
+        ax.set_xlabel('Predicted labels')
+        ax.set_ylabel('True labels') 
+        ax.set_title('Confusion Matrix') 
         ax.xaxis.set_ticklabels(['negatif', 'netral','positif']); ax.yaxis.set_ticklabels(['negatif', 'netral','positif']);
         st.pyplot(f)
         st.title('sesudah SMOTE')
