@@ -65,11 +65,6 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## 📚 Dataset
-
-Dataset yang digunakan dalam proyek ini berasal dari Kaggle:
-[Data Ulasan Terlabel](https://www.kaggle.com/datasets/dimasdiandraa/data-ulasan-terlabel)
-
 ## 🔗 Referensi
 
 - **Code Algoritma Genetika:** [SVM Optimization by Genetic Algorithm](https://github.com/kevingeorge0123/SVM-Opt-by-Genetic-Algorithm/tree/main)
