@@ -45,7 +45,7 @@ add_css("style/style.css")
 import pickle
 #import dataset
 
-ulasan = pd.read_csv('data/dataset_bersih.csv')
+ulasan = pd.read_csv('data/dataset/dataset_bersih.csv')
 
 # text preprosessing
 def cleansing(kalimat_baru): 
@@ -72,7 +72,7 @@ def tokenizing(kalimat_baru):
     kalimat_baru = word_tokenize(kalimat_baru)
     return kalimat_baru
 def slangword (kalimat_baru):
-    kamusSlang = eval(open("data/slangwords.txt").read())
+    kamusSlang = eval(open("data/dictionry/slangwords.txt").read())
     pattern = re.compile(r'\b( ' + '|'.join (kamusSlang.keys())+r')\b')
     content = []
     for kata in kalimat_baru:
@@ -105,7 +105,7 @@ def stopword (kalimat_baru):
     daftar_stopword = stopwords.words('indonesian')
     daftar_stopword.extend(["yg", "dg", "rt", "dgn", "ny", "d",'gb','ahk','g','anjing','ga','gua','nder']) 
     # Membaca file teks stopword menggunakan pandas
-    txt_stopword = pd.read_csv("data/stopwords.txt", names=["stopwords"], header=None)
+    txt_stopword = pd.read_csv("data/dictionary/stopwords.txt", names=["stopwords"], header=None)
 
     # Menggabungkan daftar stopword dari NLTK dengan daftar stopword dari file teks
     daftar_stopword.extend(txt_stopword['stopwords'].tolist())
@@ -173,7 +173,7 @@ elif(selected == 'Pengolahan data') :
         def filter_sentiment(dataset, Sentimen):
             return dataset[dataset['Sentimen'].isin(selected_sentiment)]
         sentiment_map = {1: 'positif', -1: 'negatif', 0: 'netral'}
-        dataset =pd.read_csv('data/Ulasan My XL 1000 Data Labelled.csv')
+        dataset =pd.read_csv('data/dataset/Ulasan My XL 1000 Data Labelled.csv')
         selected_sentiment = st.multiselect('Pilih kelas sentimen', list(sentiment_map.values()),default=list(sentiment_map.values()))
         selected_sentiment = [key for key, value in sentiment_map.items() if value in selected_sentiment]
         filtered_data = filter_sentiment(dataset, selected_sentiment)
@@ -207,31 +207,31 @@ elif(selected == 'Pengolahan data') :
             st.title('Text preprosesing')
             st.header('cleansing')#----------------
             st.text('membersihkan data dari angka ,tanda baca,dll.')
-            cleansing = pd.read_csv('data/cleansing.csv')
+            cleansing = pd.read_csv('data/prepro/cleansing.csv')
             st.write(cleansing)
             st.header('casefolding')#----------------
             st.text('mengubahan seluruh huruf menjadi kecil (lowercase) yang ada pada dokumen.')
-            casefolding = pd.read_csv('data/casefolding.csv')
+            casefolding = pd.read_csv('data/prepro/casefolding.csv')
             st.write(casefolding)
             st.header('tokenizing')#----------------
             st.text('menguraikan kalimat menjadi token-token atau kata-kata.')
-            tokenizing = pd.read_csv('data/tokenizing.csv')
+            tokenizing = pd.read_csv('data/prepro/tokenizing.csv')
             st.write(tokenizing)
             st.header('word normalization')#----------------
             st.text('mengubah penggunaan kata tidak baku menjadi baku')
-            word_normalization = pd.read_csv('data/word normalization.csv')
+            word_normalization = pd.read_csv('data/prepro/word normalization.csv')
             st.write(word_normalization)
             st.header('stopword')#----------------
             st.text('menyeleksi kata yang tidak penting dan menghapus kata tersebut.')
-            stopword = pd.read_csv('data/stopword.csv')
+            stopword = pd.read_csv('data/prepro/stopword.csv')
             st.write(stopword)
             st.header('stemming')#----------------
             st.text(' merubahan kata yang berimbuhan menjadi kata dasar. ')
-            stemming = pd.read_csv('data/stemming.csv')
+            stemming = pd.read_csv('data/prepro/stemming.csv')
             st.write(stemming)
             st.title('Pembobotan TF-IDF')
             st.text('pembobotan pada penelitan ini menggunakan tf-idf')
-            tfidf = pd.read_csv('data/hasil TF IDF.csv')
+            tfidf = pd.read_csv('data/prepro/hasil TF IDF.csv')
             st.dataframe(tfidf,use_container_width=True)
 
         if(opsi_prepro == 'dinamis') :
@@ -338,8 +338,8 @@ elif(selected == 'Pengolahan data') :
                 plt.pie(df.groupby('sentimen')['sentimen'].count(), autopct=" %.1f%% " ,labels=labels)
                 ax2.axis('equal')
                 st.pyplot(fig2)
-            sintetis = pd.read_csv('data/data_sintetik.csv')
-            dsmote = pd.read_csv('data/data_smote.csv')
+            sintetis = pd.read_csv('data/smote/data_sintetik.csv')
+            dsmote = pd.read_csv('data/smote/data_smote.csv')
             st.header('Data sintetis')
             st.write('jumlah data sintetis :',len(sintetis))
             st.write('jumlah penambahan setiap kelas :')
@@ -523,7 +523,7 @@ elif(selected == 'Algoritma Genetika') :
     st.text('jumlah mutation rate :0.1')
     st.text('range parameter c :1-50')
     st.text('range parameter gamma :0.1-1')
-    ga = pd.read_csv('data/GA_result.csv')
+    ga = pd.read_csv('data/geneticAlgoritm/GA_result.csv')
     st.dataframe(ga,use_container_width=True)
 
     best1 = ga['C_best'].iloc[-1]
@@ -699,17 +699,17 @@ elif(selected == 'Pengujian') :
     st.header('pengujian model Support Vector Machine')
     with st.expander('pengujian parameter') :
         st.write('pengujian nilai kernel')
-        pengujian_kernel = pd.read_csv('data/hasil_svm_kernel.csv')
+        pengujian_kernel = pd.read_csv('data/evaluation/hasil_svm_kernel.csv')
         st.dataframe(pengujian_kernel,use_container_width=True)
         st.write('dari percobaan diatas kernel yg terbaik adalah kernel RBF')
         st.write('pengujian nilai C')
-        pengujian_C = pd.read_csv('data/hasil_svm_C.csv')
+        pengujian_C = pd.read_csv('data/evaluation/hasil_svm_C.csv')
         st.dataframe(pengujian_C,use_container_width=True)
         st.write('dari percobaan diatas di simpulkan bahwa nilai c yg efektif pada rentang 1-50')
         st.write('penjelasan nilai C')
         st.write('parameter C (juga dikenal sebagai parameter penalti) adalah faktor penting yang mempengaruhi kinerja dan perilaku model SVM. Parameter C mengendalikan trade-off antara penalti kesalahan klasifikasi dan lebar margin.Nilai C yang lebih kecil akan menghasilkan margin yang lebih lebar, dan menjadikan model tidak peka terhadap data dan kelasahan klasifikasi(UNDERFITTING). Sebaliknya, nilai C yang lebih besar akan menghasilkan margin yang lebih sempit, menjadikan model lebih peka terhadap data dan tingkat kesalahan klasifikasi.(OVERFITTING)')
         st.write('pengujian nilai Gamma')
-        pengujian_Gamma = pd.read_csv('data/hasil_svm_gamma.csv')
+        pengujian_Gamma = pd.read_csv('data/evaluation/hasil_svm_gamma.csv')
         st.dataframe(pengujian_Gamma,use_container_width=True)
         st.write('dari percobaan diatas di simpulkan bahwa nilai gamma yg efektif pada rentang 0.1-0.99')
         st.write('penjelasan nilai gamma') 
@@ -791,15 +791,15 @@ elif(selected == 'Report') :
 
     with tab1 :
         st.header('akurasi')
-        image = Image.open('data/akurasi_plot.png')
+        image = Image.open('data/evaluation/akurasi_plot.png')
         st.image(image)
         st.write('dari plot yang ditampilkan di simpulkan bahwa nilai akurasi metode svm dengan optimasi parameter algoritma genetika lebih tinggi dibandingkan metode svm dengan nilai parameter default ')
         st.header('precision')
-        image = Image.open('data/precision_plot.png')
+        image = Image.open('data/evaluation/precision_plot.png')
         st.image(image)
         st.write('dari plot yang ditampilkan di simpulkan bahwa nilai presicion metode svm dengan optimasi parameter algoritma genetika lebih tinggi dibandingkan metode svm dengan nilai parameter default ')
         st.header('recall')
-        image = Image.open('data/recall_plot.png')
+        image = Image.open('data/evaluation/recall_plot.png')
         st.image(image)
         st.write('dari plot yang ditampilkan di simpulkan bahwa nilai recall metode svm dengan optimasi parameter algoritma genetika lebih tinggi dibandingkan metode svm dengan nilai parameter default ')
     with tab2 :
